@@ -1,0 +1,75 @@
+menu "Make2Hear configuration"
+    config EXAMPLE_SSP_ENABLED
+        bool "Secure Simple Pairing"
+        depends on BT_CLASSIC_ENABLED
+        default y
+        help
+            This enables the Secure Simple Pairing. If disable this option,
+            Bluedroid will only support Legacy Pairing
+
+    config EXAMPLE_PEER_DEVICE_NAME
+        string "Target Device Name"
+        default "B3"
+        help
+            Exact Bluetooth name of the headphones. Put them in pairing mode.
+
+    config MAKE2HEAR_DEVICE_NAME
+        string "ESP32 Bluetooth name"
+        default "Make2Hear"
+
+    config MAKE2HEAR_MIC_BCLK
+        int "Microphone BCLK GPIO (INMP441 SCK)"
+        range 0 33
+        default 26
+
+    config MAKE2HEAR_MIC_WS
+        int "Microphone WS GPIO"
+        range 0 33
+        default 25
+
+    config MAKE2HEAR_MIC_DATA
+        int "Microphone DATA input GPIO (INMP441 SD)"
+        range 0 39
+        default 33
+
+    config MAKE2HEAR_MIC_RIGHT_SLOT
+        bool "Read the right microphone slot (L/R connected to 3.3 V)"
+        default n
+        help
+            Leave disabled when L/R is connected to GND. Never leave L/R floating.
+
+    choice MAKE2HEAR_GAIN
+        prompt "Microphone gain"
+        default MAKE2HEAR_GAIN_2X
+        help
+            Start at 2x. Higher gain also amplifies room and microphone noise.
+
+        config MAKE2HEAR_GAIN_1X
+            bool "1x (0 dB)"
+        config MAKE2HEAR_GAIN_2X
+            bool "2x (+6 dB)"
+        config MAKE2HEAR_GAIN_4X
+            bool "4x (+12 dB)"
+        config MAKE2HEAR_GAIN_8X
+            bool "8x (+18 dB)"
+    endchoice
+
+    config MAKE2HEAR_MIC_GAIN
+        int
+        default 1 if MAKE2HEAR_GAIN_1X
+        default 2 if MAKE2HEAR_GAIN_2X
+        default 4 if MAKE2HEAR_GAIN_4X
+        default 8 if MAKE2HEAR_GAIN_8X
+
+    config MAKE2HEAR_STATS_PERIOD_MS
+        int "Audio diagnostic interval (milliseconds)"
+        range 1000 60000
+        default 1000
+
+    config MAKE2HEAR_LEGACY_PIN
+        string "Legacy pairing PIN"
+        default "1234"
+        help
+            Used only if the headphones request legacy PIN pairing. Match their
+            manual (often 0000 or 1234). Use 1 to 16 ASCII characters.
+endmenu

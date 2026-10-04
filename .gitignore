@@ -1,0 +1,13 @@
+# Generated build products and local ESP-IDF configuration
+/build*/
+/sdkconfig
+/sdkconfig.old
+/managed_components/
+
+# OS/editor and local diagnostics
+.DS_Store
+*.swp
+*.log
+.vscode/
+.idea/
+__pycache__/

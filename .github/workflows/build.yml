@@ -1,0 +1,50 @@
+name: ESP-IDF build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        latency: ["ON", "OFF"]
+    env:
+      IDF_TOOLS_PATH: ${{ runner.temp }}/idf-tools
+      IDF_PY_BUILD_JOBS: "4"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install host prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git wget flex bison gperf python3 python3-venv \
+            python3-pip cmake ninja-build ccache libffi-dev libssl-dev libusb-1.0-0-dev
+      - name: Install the pinned SDK
+        shell: bash
+        run: |
+          sdk_commit=$(cat .idf-version)
+          git init "$RUNNER_TEMP/esp-idf"
+          git -C "$RUNNER_TEMP/esp-idf" remote add origin https://github.com/espressif/esp-idf.git
+          git -C "$RUNNER_TEMP/esp-idf" fetch --depth 1 origin "$sdk_commit"
+          git -C "$RUNNER_TEMP/esp-idf" checkout --detach FETCH_HEAD
+          git -C "$RUNNER_TEMP/esp-idf" submodule update --init --recursive --depth 1
+          "$RUNNER_TEMP/esp-idf/install.sh" esp32
+      - name: Build from public defaults and check mode coupling
+        shell: bash
+        env:
+          LATENCY_MODE: ${{ matrix.latency }}
+        run: |
+          . "$RUNNER_TEMP/esp-idf/export.sh"
+          test ! -e sdkconfig
+          idf.py -B build-ci -DSDKCONFIG="$PWD/build-ci/sdkconfig" \
+            -DIDF_TARGET=esp32 -DB3_LOW_LATENCY_A2DP="$LATENCY_MODE" build
+          python tools/check_build.py build-ci "$LATENCY_MODE"
