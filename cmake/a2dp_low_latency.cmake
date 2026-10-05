@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2015-2026 Espressif Systems (Shanghai) CO LTD
 # SPDX-FileCopyrightText: 2026 Make2Hear contributors
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: GPL-3.0-only AND Apache-2.0
+# Original SDK fragments: Apache-2.0; Make2Hear modifications: GPL-3.0-only.
 
 # The public A2DP API cannot change the built-in SBC source's media timer.
 # Patch one generated source in this build, keeping the installed SDK untouched.
@@ -102,7 +103,7 @@ set(b3_generated_source "${b3_generated_dir}/btc_a2dp_source.c")
 file(MAKE_DIRECTORY "${b3_generated_dir}")
 # configure_file avoids rebuilding the source on an unchanged reconfigure.
 file(WRITE "${b3_generated_dir}/btc_a2dp_source.c.in"
-    "/* Modified by Make2Hear: 10 ms batching, fractional PCM pacing, bounded Tx queue.\n * SPDX-FileCopyrightText: 2026 Make2Hear contributors\n * SPDX-License-Identifier: Apache-2.0\n */\n${b3_source}")
+    "/* Modified by Make2Hear: 10 ms batching, fractional PCM pacing, bounded Tx queue.\n * SPDX-FileCopyrightText: 2026 Make2Hear contributors\n * SPDX-License-Identifier: GPL-3.0-only AND Apache-2.0\n * Make2Hear modifications: GPL-3.0-only; upstream code: Apache-2.0.\n */\n${b3_source}")
 configure_file("${b3_generated_dir}/btc_a2dp_source.c.in" "${b3_generated_source}" COPYONLY)
 get_target_property(b3_bt_sources ${b3_bt_lib} SOURCES)
 list(FIND b3_bt_sources "${b3_sdk_source}" b3_source_index)

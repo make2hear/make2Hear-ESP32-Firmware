@@ -1,5 +1,16 @@
 # Change log
 
+## 2026-10-05 — GPLv3 licensing
+
+- Changed the project and original Make2Hear contributions to GNU GPL version 3
+  only (`GPL-3.0-only`).
+- Preserved Espressif's notices and the Apache-2.0, Unlicense and CC0 license texts.
+- Updated source/generated-source notices, README and contribution terms.
+- Documented corresponding-source requirements to review before distributing
+  firmware containing the precompiled ESP32 controller and PHY libraries.
+- Earlier Apache-2.0 distributions retain the permissions already granted.
+- Firmware logic and configuration are unchanged.
+
 ## 0.1.0-dev — publication preparation
 
 - Project name and Bluetooth name changed to Make2Hear.

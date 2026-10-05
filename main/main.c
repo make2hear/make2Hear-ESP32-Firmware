@@ -3,10 +3,10 @@
  *
  * SPDX-FileCopyrightText: 2026 Make2Hear contributors
  *
- * SPDX-License-Identifier: Apache-2.0 AND (Unlicense OR CC0-1.0)
+ * SPDX-License-Identifier: GPL-3.0-only AND (Unlicense OR CC0-1.0)
  *
  * Original Espressif portions: Unlicense OR CC0-1.0.
- * Make2Hear modifications: Apache-2.0. See THIRD_PARTY_NOTICES.md.
+ * Make2Hear modifications: GPL-3.0-only. See THIRD_PARTY_NOTICES.md.
  */
 
 #include <stdio.h>

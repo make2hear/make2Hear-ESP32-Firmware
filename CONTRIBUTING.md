@@ -16,8 +16,10 @@ Keep the microphone task, small PCM ring and nonblocking A2DP callback simple.
 5. Explain changes to latency, buffer capacity, gain, format or supported hardware.
 
 Do not commit build directories, local `sdkconfig`, logs, private paths, or paired
-device addresses. Keep upstream notices. Contributions use the project's terms
-described in `THIRD_PARTY_NOTICES.md`.
+device addresses. Keep upstream notices. Original contributions are submitted
+under GNU GPL version 3 only (`GPL-3.0-only`), as described in `LICENSE` and
+`THIRD_PARTY_NOTICES.md`. Third-party material keeps its original notices and
+must be compatible with the project's license.
 
 For bugs include the board/module, headphone model, SDK commit, firmware revision,
 wiring/slot, gain, latency mode, reproduction steps and a short relevant log.

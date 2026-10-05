@@ -207,5 +207,11 @@ including firmware and NVS**; then run `idf.py -p PORT flash monitor` again.
 - [Contribution guide](CONTRIBUTING.md) and [validation checklist](docs/VALIDATION.md).
 - [Change log](CHANGELOG.md).
 - Historical [latency audit](LATENCY_AUDIT.md) and [latency changes](LATENCY_CHANGES.md).
-- Original Make2Hear contributions: [Apache-2.0](LICENSE).
-  Espressif material retains its original terms; see [third-party notices](THIRD_PARTY_NOTICES.md).
+- Make2Hear and its original contributions: [GNU GPL version 3 only](LICENSE)
+  (`GPL-3.0-only`). Espressif material retains its original terms; see
+  [third-party notices](THIRD_PARTY_NOTICES.md).
+
+Redistribution of covered modified versions must comply with GPLv3. Firmware
+binary distribution also requires checking the corresponding-source obligations
+for the ESP32 controller/PHY libraries; see the notes linked above. Copies
+previously distributed under Apache-2.0 keep the permissions already granted.

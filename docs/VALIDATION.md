@@ -63,5 +63,7 @@ headphone model, SDK commit, gain, wiring and latency mode for each run.
 Update the evidence above and change `PROJECT_VER` to the release version only
 when the stated tests are complete. Publish known limitations with the release.
 Keep build artifacts out of Git. If distributing binaries through Releases,
-record board/configuration, SDK commit and checksums, and include the applicable
-SDK/component license material described in `THIRD_PARTY_NOTICES.md`.
+first resolve the GPLv3 corresponding-source requirements for the precompiled
+controller/PHY libraries described in `THIRD_PARTY_NOTICES.md`. Then record
+board/configuration, SDK commit and checksums, and include the required source,
+installation information where applicable, and SDK/component license material.
